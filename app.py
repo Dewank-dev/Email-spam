@@ -22,36 +22,89 @@ def load_css() -> None:
     css = """
     <style>
         :root {
-            --bg: #06131e;
-            --panel: rgba(15, 23, 42, 0.7);
-            --panel-strong: rgba(15, 23, 42, 0.92);
-            --card: rgba(17, 24, 39, 0.85);
-            --text: #e2e8f0;
-            --muted: #94a3b8;
-            --primary: #38bdf8;
+            --bg: #f8fafc;
+            --panel: rgba(255, 255, 255, 0.8);
+            --panel-strong: rgba(255, 255, 255, 0.94);
+            --card: rgba(255, 255, 255, 0.9);
+            --text: #0f172a;
+            --muted: #475569;
+            --primary: #0ea5e9;
             --primary-2: #8b5cf6;
-            --success: #34d399;
+            --success: #10b981;
             --danger: #f97316;
             --warning: #fbbf24;
-            --shadow: rgba(14, 116, 144, 0.25);
+            --shadow: rgba(15, 23, 42, 0.08);
         }
         html, body, [data-testid="stAppViewContainer"] {
-            background: radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 30%),
-                        radial-gradient(circle at top right, rgba(139,92,246,0.16), transparent 28%),
-                        linear-gradient(135deg, #020817 0%, #0b1220 30%, #111827 100%);
+            background: linear-gradient(180deg, #f8fbff 0%, #f3f7fb 38%, #eef4ff 100%);
             color: var(--text);
         }
         [data-testid="stHeader"] {
-            background: rgba(2, 6, 23, 0.2);
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .browser-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 18px;
+            padding: 0.7rem 1rem;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+            margin: 0 0 1rem 0;
+        }
+        .browser-toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            min-width: 0;
+        }
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.8);
+        }
+        .browser-dot.red { background: #f87171; }
+        .browser-dot.yellow { background: #fbbf24; }
+        .browser-dot.green { background: #4ade80; }
+        .browser-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .browser-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #475569;
+            font-size: 1rem;
+        }
+        .browser-actions .mini-pill {
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(14,165,233,0.08);
+            border: 1px solid rgba(59,130,246,0.12);
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 0.75rem;
         }
         .glass-card {
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(148, 163, 184, 0.18);
-            border-radius: 20px;
-            padding: 1.2rem;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+            border-radius: 22px;
+            padding: 1.3rem;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
         }
         .metric-card {
             background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.85));
@@ -65,17 +118,125 @@ def load_css() -> None:
             font-size: clamp(2.2rem, 5vw, 4rem);
             font-weight: 800;
             line-height: 1.1;
-            background: linear-gradient(90deg, #67e8f9, #a78bfa, #38bdf8);
+            background: linear-gradient(90deg, #0ea5e9, #6366f1, #8b5cf6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            letter-spacing: -0.06em;
         }
         .result-box {
-            border-radius: 22px;
-            padding: 1.3rem 1.4rem;
+            border-radius: 24px;
+            padding: 1.4rem 1.5rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248,250,252,0.82));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 18px 40px rgba(15, 23, 42, 0.09);
+        }
+        .risk-meter {
+            width: 100%;
+            height: 12px;
+            background: rgba(148, 163, 184, 0.16);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 0.75rem;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+        }
+        .risk-meter-fill {
+            height: 100%;
+            border-radius: 999px;
+            display: block;
+            transition: width 0.7s ease;
+            animation: meterGlow 2.2s ease-in-out infinite alternate;
+        }
+        @keyframes meterGlow {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+        .chip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-radius: 999px;
+            padding: 0.38rem 0.7rem;
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
             border: 1px solid rgba(148, 163, 184, 0.2);
-            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 18px 40px rgba(15, 23, 42, 0.18);
+            background: rgba(255,255,255,0.7);
+            color: #334155;
+        }
+        .analysis-pipeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-top: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .pipeline-step {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(248,250,252,0.9);
+            border: 1px solid rgba(148,163,184,0.18);
+            color: #334155;
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+        .pipeline-line {
+            flex: 1;
+            min-width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(14,165,233,0.45), rgba(139,92,246,0.45));
+            border-radius: 999px;
+        }
+        .signal-chip {
+            display: inline-block;
+            padding: 0.56rem 0.8rem;
+            margin: 0.25rem 0.35rem 0.25rem 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(139,92,246,0.08));
+            border: 1px solid rgba(99,102,241,0.15);
+            color: #1e293b;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .hero-art {
+            position: relative;
+            min-height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(99,102,241,0.08), rgba(139,92,246,0.12));
+            border: 1px solid rgba(96, 165, 250, 0.15);
+            overflow: hidden;
+            animation: floatCard 4s ease-in-out infinite;
+        }
+        .hero-art::before,
+        .hero-art::after {
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.45);
+            box-shadow: 0 0 18px rgba(59, 130, 246, 0.3);
+        }
+        .hero-art::before {
+            top: 18%; right: 18%;
+        }
+        .hero-art::after {
+            bottom: 16%; left: 18%;
+            background: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 18px rgba(139, 92, 246, 0.25);
+        }
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
         .scan-box {
             border: 1px solid rgba(103, 232, 249, 0.35);
@@ -86,32 +247,37 @@ def load_css() -> None:
             overflow: hidden;
         }
         div[data-testid="stDialog"] > div {
-            background: rgba(11, 17, 27, 0.96) !important;
-            border: 1px solid rgba(148, 163, 184, 0.22) !important;
-            border-radius: 28px !important;
-            box-shadow: 0 30px 80px rgba(2, 6, 23, 0.72), 0 0 0 1px rgba(59,130,246,0.15) !important;
+            background: rgba(255, 255, 255, 0.96) !important;
+            border: 1px solid rgba(148, 163, 184, 0.18) !important;
+            border-radius: 26px !important;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(99,102,241,0.08) !important;
             backdrop-filter: blur(18px) !important;
             -webkit-backdrop-filter: blur(18px) !important;
+            animation: modalIn 0.22s ease-out;
+        }
+        @keyframes modalIn {
+            0% { opacity: 0; transform: scale(0.98) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         div[data-testid="stDialog"] h2 {
-            color: #e2e8f0 !important;
+            color: #172033 !important;
             font-size: 2rem !important;
             font-weight: 800 !important;
             letter-spacing: -0.04em !important;
         }
         div[data-testid="stDialog"] .stButton > button {
             border-radius: 16px !important;
-            background: linear-gradient(90deg, #38bdf8, #8b5cf6) !important;
+            background: linear-gradient(90deg, #20a9e8, #6366f1) !important;
             color: white !important;
             border: none !important;
-            box-shadow: 0 12px 22px rgba(59, 130, 246, 0.35) !important;
+            box-shadow: 0 12px 22px rgba(59, 130, 246, 0.22) !important;
             font-weight: 700 !important;
             padding: 0.8rem 1.4rem !important;
             transition: transform 0.2s ease, box-shadow 0.2s ease !important;
         }
         div[data-testid="stDialog"] .stButton > button:hover {
             transform: translateY(-1px) !important;
-            box-shadow: 0 18px 28px rgba(96, 165, 250, 0.42) !important;
+            box-shadow: 0 18px 28px rgba(99, 102, 241, 0.27) !important;
         }
         .scan-box::before {
             content: "";
@@ -129,19 +295,36 @@ def load_css() -> None:
             align-items: center;
             gap: 0.5rem;
             border-radius: 999px;
-            padding: 0.45rem 0.9rem;
+            padding: 0.5rem 0.9rem;
             font-size: 0.78rem;
             font-weight: 700;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
+            background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(139,92,246,0.08));
+            color: #0f172a;
+            border: 1px solid rgba(59, 130, 246, 0.16);
+            box-shadow: 0 8px 18px rgba(59, 130, 246, 0.08);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(59,130,246,0), 0 8px 18px rgba(59,130,246,0.06); }
+            50% { box-shadow: 0 0 18px rgba(59,130,246,0.12), 0 8px 18px rgba(59,130,246,0.08); }
         }
         .chip {
-            border: 1px solid rgba(148, 163, 184, 0.25);
-            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(239,246,255,0.8));
             border-radius: 999px;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 0.8rem;
             color: var(--text);
             font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.1);
+            border-color: rgba(96, 165, 250, 0.35);
         }
         .stButton > button {
             border-radius: 12px;
@@ -149,9 +332,13 @@ def load_css() -> None:
             color: white;
             border: none;
             font-weight: 700;
+            box-shadow: 0 12px 22px rgba(96, 165, 250, 0.18);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
         }
         .stButton > button:hover {
-            filter: brightness(1.08);
+            transform: translateY(-1px);
+            filter: brightness(1.04);
+            box-shadow: 0 16px 28px rgba(99, 102, 241, 0.2);
         }
         textarea {
             min-height: 150px !important;
@@ -221,18 +408,18 @@ def render_header() -> None:
     st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
     col1, col2 = st.columns([1.4, 1])
     with col1:
-        st.markdown("<div class='status-pill' style='background: rgba(14,165,233,0.14); color:#7dd3fc; border:1px solid rgba(125,211,252,0.3);'>🛡️ AI Security Layer</div>", unsafe_allow_html=True)
+        st.markdown("<div class='status-pill'>🛡️ AI Security Layer</div>", unsafe_allow_html=True)
         st.markdown("<div class='hero-title'>AI Spam Shield</div>", unsafe_allow_html=True)
-        st.markdown("<h3 style='color:#cbd5e1; margin-top: 0.3rem; font-weight: 600;'>Intelligent Email & SMS Spam Detection</h3>", unsafe_allow_html=True)
-        st.markdown("<p style='color:#a5b4cf; font-size: 1.05rem; max-width: 620px;'>Analyze suspicious messages using Natural Language Processing and Machine Learning.</p>", unsafe_allow_html=True)
+        st.markdown("<h3 style='color:#334155; margin-top: 0.3rem; font-weight: 700;'>Intelligent Email & SMS Spam Detection</h3>", unsafe_allow_html=True)
+        st.markdown("<p style='color:#475569; font-size: 1.05rem; max-width: 620px;'>Analyze suspicious messages using Natural Language Processing and Machine Learning.</p>", unsafe_allow_html=True)
         chips = st.columns(4)
         for chip, label in zip(chips, ["NLP", "ML", "Risk Scan", "Privacy Safe"]):
             chip.markdown(f"<div class='chip'>{label}</div>", unsafe_allow_html=True)
     with col2:
         st.markdown(
             """
-            <div class='glass-card' style='min-height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(139,92,246,0.12));'>
-                <div style='font-size: 120px; animation: pulse 2.8s ease-in-out infinite;'>📨</div>
+            <div class='hero-art'>
+                <div style='font-size: 118px; filter: drop-shadow(0 20px 28px rgba(59,130,246,0.18)); animation: pulse 2.8s ease-in-out infinite;'>📨</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -319,41 +506,68 @@ def show_prediction_dialog(result: Dict[str, Any]) -> None:
     @st.dialog("Prediction Result")
     def _dialog():
         prediction = result["label"]
-        confidence = result["confidence"]
+        confidence = result.get("confidence")
         explanation = result.get("explanation") or []
 
         if prediction == "NOT SPAM":
-            notify_color = "rgba(52,211,153,0.12)"
-            accent = "#34d399"
-            label = "MESSAGE LOOKS SAFE"
+            notify_color = "rgba(16,185,129,0.10)"
+            accent = "#10b981"
+            soft_accent = "rgba(16,185,129,0.15)"
+            label = "SAFE MESSAGE"
             icon = "✅"
+            risk_label = "LOW RISK"
             reason = "This message appears to resemble legitimate communication and does not match the spam patterns in the trained model."
+            meter_color = "linear-gradient(90deg, #22c55e, #10b981)"
         else:
-            notify_color = "rgba(249,115,22,0.12)"
-            accent = "#f97316"
+            notify_color = "rgba(239,68,68,0.08)"
+            accent = "#ef4444"
+            soft_accent = "rgba(239,68,68,0.12)"
             label = "SPAM DETECTED"
             icon = "⚠️"
+            risk_label = "HIGH RISK"
             reason = "This message contains common scam or promotional signals detected by the model."
+            meter_color = "linear-gradient(90deg, #f59e0b, #ef4444)"
+
+        risk_value = confidence if confidence is not None else 50
+        risk_value = max(0, min(100, float(risk_value)))
+        if prediction == "NOT SPAM":
+            risk_value = max(10, min(40, risk_value))
+        else:
+            risk_value = max(60, min(100, risk_value))
 
         st.markdown(
             f"""
-            <div class='result-box' style='background: {notify_color}; border-color: {accent}55; margin-top: 1rem;'>
-                <div style='display:flex; align-items:center; justify-content:flex-start; gap:1rem; flex-wrap:wrap;'>
-                    <div>
-                        <div style='font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:{accent}; font-weight:800;'>{icon} Prediction</div>
-                        <div style='font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; margin-top: 0.5rem; color: white;'>{label}</div>
+            <div class='result-box' style='background: linear-gradient(135deg, {notify_color}, rgba(255,255,255,0.96)); border-color: {soft_accent}; margin-top: 0.5rem;'>
+                <div style='display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;'>
+                    <div style='display:flex; align-items:center; gap:0.75rem;'>
+                        <div style='width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; background: {soft_accent}; border:1px solid {accent}33; font-size:1.2rem;'>{icon}</div>
+                        <div>
+                            <div style='font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:{accent}; font-weight:800;'>Prediction</div>
+                            <div style='font-size: clamp(1.5rem, 2.2vw, 2.2rem); font-weight: 800; margin-top: 0.2rem; color: #172033;'>{label}</div>
+                        </div>
+                    </div>
+                    <div class='chip-badge' style='color:{accent}; border-color:{accent}33; background:{soft_accent};'>{risk_label}</div>
+                </div>
+                <div style='margin-top: 1rem;'>
+                    <div style='display:flex; justify-content:space-between; align-items:center; margin-bottom:0.45rem; color:#475569; font-size:0.82rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;'>
+                        <span>Risk Level</span>
+                        <span>{int(risk_value)}%</span>
+                    </div>
+                    <div class='risk-meter'>
+                        <span class='risk-meter-fill' style='width:{int(risk_value)}%; background:{meter_color};'></span>
                     </div>
                 </div>
-                <p style='color:#d9ebfa; margin-top: 1rem; font-size: 1rem;'>{reason}</p>
+                <p style='color:#334155; margin-top: 1rem; font-size: 1rem; line-height: 1.7;'>{reason}</p>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
         if explanation:
-            st.markdown("### Why?")
-            st.write("Signals detected from the message text are shown below. These are model-derived indicators, not absolute proof of malicious intent.")
-            st.write(", ".join(explanation))
+            st.markdown("<div style='margin-top: 1.5rem; font-size: 1.3rem; font-weight: 800; color: #172033;'>Why?</div>", unsafe_allow_html=True)
+            st.caption("Signals detected from the message text are shown below. These are model-derived indicators, not absolute proof of malicious intent.")
+            signals_html = "".join(f"<span class='signal-chip'>{signal.strip()}</span>" for signal in explanation if str(signal).strip())
+            st.markdown(f"<div>{signals_html}</div>", unsafe_allow_html=True)
 
         col1, col2 = st.columns([1, 1])
         with col2:
@@ -387,6 +601,22 @@ def run_analysis(user_text: str) -> None:
 
 def main() -> None:
     load_css()
+    st.markdown(
+        """
+        <div class='browser-toolbar'>
+            <div class='browser-toolbar-left'>
+                <div class='browser-dot red'></div>
+                <div class='browser-dot yellow'></div>
+                <div class='browser-dot green'></div>
+                <div class='browser-title'>AI Spam Shield</div>
+            </div>
+            <div class='browser-actions'>
+                <span class='mini-pill'>AI Spam Shield</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     render_header()
     render_prediction_interface()
     add_prediction_history()
