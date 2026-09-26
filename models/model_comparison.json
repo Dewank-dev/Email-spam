@@ -1,0 +1,82 @@
+[
+  {
+    "Model": "Multinomial Naive Bayes",
+    "Vectorizer": "CountVectorizer",
+    "Accuracy": 0.7,
+    "Precision": 0.6666666666666666,
+    "Recall": 1.0,
+    "F1": 0.8
+  },
+  {
+    "Model": "Logistic Regression",
+    "Vectorizer": "CountVectorizer",
+    "Accuracy": 0.9,
+    "Precision": 1.0,
+    "Recall": 0.8333333333333334,
+    "F1": 0.9090909090909091
+  },
+  {
+    "Model": "Random Forest",
+    "Vectorizer": "CountVectorizer",
+    "Accuracy": 0.5,
+    "Precision": 1.0,
+    "Recall": 0.16666666666666666,
+    "F1": 0.2857142857142857
+  },
+  {
+    "Model": "AdaBoost",
+    "Vectorizer": "CountVectorizer",
+    "Accuracy": 0.7,
+    "Precision": 1.0,
+    "Recall": 0.5,
+    "F1": 0.6666666666666666
+  },
+  {
+    "Model": "Gradient Boosting",
+    "Vectorizer": "CountVectorizer",
+    "Accuracy": 0.5,
+    "Precision": 1.0,
+    "Recall": 0.16666666666666666,
+    "F1": 0.2857142857142857
+  },
+  {
+    "Model": "Multinomial Naive Bayes",
+    "Vectorizer": "TF-IDF",
+    "Accuracy": 0.7,
+    "Precision": 0.6666666666666666,
+    "Recall": 1.0,
+    "F1": 0.8
+  },
+  {
+    "Model": "Logistic Regression",
+    "Vectorizer": "TF-IDF",
+    "Accuracy": 0.7,
+    "Precision": 0.6666666666666666,
+    "Recall": 1.0,
+    "F1": 0.8
+  },
+  {
+    "Model": "Random Forest",
+    "Vectorizer": "TF-IDF",
+    "Accuracy": 0.7,
+    "Precision": 1.0,
+    "Recall": 0.5,
+    "F1": 0.6666666666666666
+  },
+  {
+    "Model": "AdaBoost",
+    "Vectorizer": "TF-IDF",
+    "Accuracy": 0.7,
+    "Precision": 0.6666666666666666,
+    "Recall": 1.0,
+    "F1": 0.8
+  },
+  {
+    "Model": "Gradient Boosting",
+    "Vectorizer": "TF-IDF",
+    "Accuracy": 0.9,
+    "Precision": 1.0,
+    "Recall": 0.8333333333333334,
+    "F1": 0.9090909090909091
+  }
+]

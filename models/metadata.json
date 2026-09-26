@@ -1,0 +1,32 @@
+{
+  "model_name": "Logistic Regression",
+  "vectorizer_name": "CountVectorizer",
+  "training_date": "2026-09-26 16:39:16 UTC",
+  "dataset_size": 50,
+  "spam_messages": 30,
+  "ham_messages": 20,
+  "accuracy": 0.9,
+  "precision": 1.0,
+  "recall": 0.8333333333333334,
+  "f1_score": 0.9090909090909091,
+  "number_of_features": 48,
+  "confusion_matrix": [
+    [
+      5,
+      1
+    ],
+    [
+      0,
+      4
+    ]
+  ],
+  "preprocessing": {
+    "text_lowercase": true,
+    "remove_urls": true,
+    "remove_punctuation": true,
+    "tokenize": true,
+    "remove_stopwords": true,
+    "stemming": true,
+    "extra_spaces": true
+  }
+}
