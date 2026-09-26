@@ -44,59 +44,6 @@ def load_css() -> None:
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
-        .browser-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            border-radius: 18px;
-            padding: 0.7rem 1rem;
-            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
-            margin: 0 0 1rem 0;
-        }
-        .browser-toolbar-left {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            min-width: 0;
-        }
-        .browser-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(148, 163, 184, 0.8);
-        }
-        .browser-dot.red { background: #f87171; }
-        .browser-dot.yellow { background: #fbbf24; }
-        .browser-dot.green { background: #4ade80; }
-        .browser-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #1e293b;
-            letter-spacing: 0.02em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .browser-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            color: #475569;
-            font-size: 1rem;
-        }
-        .browser-actions .mini-pill {
-            padding: 0.45rem 0.8rem;
-            border-radius: 999px;
-            background: rgba(14,165,233,0.08);
-            border: 1px solid rgba(59,130,246,0.12);
-            color: #0f172a;
-            font-weight: 700;
-            font-size: 0.75rem;
-        }
         .glass-card {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(14px);
@@ -601,22 +548,6 @@ def run_analysis(user_text: str) -> None:
 
 def main() -> None:
     load_css()
-    st.markdown(
-        """
-        <div class='browser-toolbar'>
-            <div class='browser-toolbar-left'>
-                <div class='browser-dot red'></div>
-                <div class='browser-dot yellow'></div>
-                <div class='browser-dot green'></div>
-                <div class='browser-title'>AI Spam Shield</div>
-            </div>
-            <div class='browser-actions'>
-                <span class='mini-pill'>AI Spam Shield</span>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
     render_header()
     render_prediction_interface()
     add_prediction_history()
