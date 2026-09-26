@@ -4,7 +4,6 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 .DS_Store
-*.pkl
 *.joblib
 .venv/
 .mypy_cache/

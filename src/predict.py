@@ -16,19 +16,20 @@ import numpy as np
 from src.preprocessing import preprocess_text
 
 
-MODEL_PATH = Path("models/spam_model.pkl")
-VECTORIZER_PATH = Path("models/vectorizer.pkl")
-METADATA_PATH = Path("models/metadata.json")
+MODEL_PATH = ROOT / "models" / "spam_model.pkl"
+VECTORIZER_PATH = ROOT / "models" / "vectorizer.pkl"
+METADATA_PATH = ROOT / "models" / "metadata.json"
 
 
 @lru_cache(maxsize=1)
 def load_model_bundle() -> tuple[Any, Any, Dict[str, Any]]:
-    if not MODEL_PATH.exists():
-        raise FileNotFoundError("Model file not found. Train the model first.")
-    if not VECTORIZER_PATH.exists():
-        raise FileNotFoundError("Vectorizer file not found. Train the model first.")
-    if not METADATA_PATH.exists():
-        raise FileNotFoundError("Model metadata not found.")
+    if not MODEL_PATH.exists() or not VECTORIZER_PATH.exists() or not METADATA_PATH.exists():
+        try:
+            from src.train import train_and_save_model
+
+            train_and_save_model(ROOT / "data" / "spam.csv")
+        except Exception as exc:
+            raise FileNotFoundError("Model file not found. Train the model first.") from exc
 
     model = joblib.load(MODEL_PATH)
     vectorizer = joblib.load(VECTORIZER_PATH)
