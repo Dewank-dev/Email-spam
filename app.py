@@ -44,6 +44,12 @@ def load_css() -> None:
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
+        [data-testid="stToolbar"] {
+            display: none !important;
+        }
+        [data-testid="stDecoration"] {
+            display: none !important;
+        }
         .glass-card {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(14px);
